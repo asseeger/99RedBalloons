@@ -9,10 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var ivMyImageView: UIImageView!
+    
+    @IBOutlet weak var labelNumberOfBalloons: UILabel!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Display the 1st image
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +27,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func barButtonNextPressed(sender: UIBarButtonItem) {
+    }
 
 }
 
