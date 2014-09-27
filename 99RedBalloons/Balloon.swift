@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import UIKit
+
+struct Balloon {
+    var number = 0
+    var image = UIImage (named: "")
+}
