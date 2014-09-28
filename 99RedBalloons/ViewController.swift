@@ -18,14 +18,42 @@ class ViewController: UIViewController {
     
     var randomNumberOfLastIteration:Int = -1
     
-    // Creating the array
+    // Initiating the array
     var balloons:[Balloon] = []
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        createBalloons()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func barButtonNextPressed(sender: UIBarButtonItem) {
+        // Hooking image ImageView, displaying appropriate label
+        var labelNumber = indexOfDisplay + 1
+        if indexOfDisplay < 99 {
+            ivMyImageView.image = balloons[indexOfDisplay].image
+            if indexOfDisplay == 0 {
+                labelNumberOfBalloons.text = "\(labelNumber) Balloon"
+            } else {
+                labelNumberOfBalloons.text = "\(labelNumber) Balloons"
+            }
+            println("Showing Balloon at array index \(indexOfDisplay).")
+            // Enumerating to get next element when pressing Next again
+            ++indexOfDisplay
+        } else {
+            ivMyImageView.image = UIImage(named: "BerlinTVTower.jpg")
+            labelNumberOfBalloons.text = "0 Balloons"
+            indexOfDisplay = 0
+        }
+    }
+
+    func createBalloons() {
         // Looping 99 times, appending a balloon to the array each time
         for index in 1...99 {
             var randomPicture:String
@@ -43,7 +71,8 @@ class ViewController: UIViewController {
             default:
                 randomPicture = "RedBalloon4.jpg"
             }
-            
+        
+
             let balloon = Balloon(number: index, image: UIImage(named: randomPicture))
             
             // Console testing
@@ -56,34 +85,6 @@ class ViewController: UIViewController {
             // To prevent showing the same picture over and over keep info, which picture was shown at the last instance
             randomNumberOfLastIteration = randomNumber
         }
-        
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func barButtonNextPressed(sender: UIBarButtonItem) {
-        // Hooking image ImageView, displaying appropriate label
-        var labelNumber = indexOfDisplay + 1
-        if indexOfDisplay <= 99 {
-            ivMyImageView.image = balloons[indexOfDisplay].image
-            if indexOfDisplay == 0 {
-                labelNumberOfBalloons.text = "\(labelNumber) Balloon"
-            } else {
-                labelNumberOfBalloons.text = "\(labelNumber) Balloons"
-            }
-            println("Showing Balloon at array index \(indexOfDisplay).")
-            // Enumerating to get next element when pressing Next again
-            ++indexOfDisplay
-        } else {
-            ivMyImageView.image = UIImage(named: "BerlinTVTower.jpg")
-            labelNumberOfBalloons.text = "0 Balloons"
-            indexOfDisplay = 0
-        }
-        
     }
 
 }
